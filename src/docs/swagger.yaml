@@ -1,0 +1,128 @@
+openapi: 3.0.0
+info:
+  title: Weather API
+  description: API that provides weather data based on user location and city search.
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:5001/api
+    description: Local development server
+
+paths:
+  /weather/current:
+    get:
+      summary: Get weather by coordinates
+      description: Fetch real-time weather data using latitude and longitude.
+      parameters:
+        - name: lat
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Latitude of the location
+        - name: lon
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Longitude of the location
+      responses:
+        200:
+          description: Successfully retrieved weather data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                    description: Encrypted weather data
+        400:
+          description: Missing or invalid latitude/longitude
+        500:
+          description: Internal server error
+
+  /weather/city/{name}:
+    get:
+      summary: Get weather by city name
+      description: Fetch real-time weather data using the city name.
+      parameters:
+        - name: name
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Name of the city
+      responses:
+        200:
+          description: Successfully retrieved weather data
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: string
+                    description: Encrypted weather data
+        400:
+          description: Missing or invalid city name
+        500:
+          description: Internal server error
+
+  /auth/register:
+    post:
+      summary: Register a new user
+      description: Creates a new user account.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: test@example.com
+                password:
+                  type: string
+                  example: mypassword
+      responses:
+        201:
+          description: User registered successfully
+        400:
+          description: Validation error
+        500:
+          description: Internal server error
+
+  /auth/login:
+    post:
+      summary: User login
+      description: Logs in a user and returns a JWT token.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: test@example.com
+                password:
+                  type: string
+                  example: mypassword
+      responses:
+        200:
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                    description: JWT access token
+        400:
+          description: Invalid credentials
+        500:
+          description: Internal server error

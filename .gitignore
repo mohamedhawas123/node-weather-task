@@ -1,0 +1,16 @@
+# 🚀 Node.js dependencies
+node_modules/
+package-lock.json
+yarn.lock
+
+# 🚀 TypeScript build files
+dist/
+tsconfig.tsbuildinfo
+
+
+
+
+# 🚀 VS Code files
+.vscode/
+.history/
+.DS_Store

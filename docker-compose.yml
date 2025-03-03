@@ -1,0 +1,47 @@
+version: "3.8"
+
+services:
+  api:
+    build: .
+    container_name: weather-api
+    restart: always
+    ports:
+      - "5001:5001"
+    env_file:
+      - .env
+    depends_on:
+      - redis
+      - mysql
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8
+    container_name: mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: panzer123
+      MYSQL_DATABASE: weatherdb
+      MYSQL_USER: user
+      MYSQL_PASSWORD: panzer123
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - app-network
+
+  redis:
+    image: redis:alpine
+    container_name: redis-cache
+    restart: always
+    ports:
+      - "6379:6379"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+
+volumes:
+  mysql-data:
