@@ -1,5 +1,5 @@
-import { DataTypes, Model, Optional } from 'sequelize';
-import { sequelize } from '../config/database';
+import { DataTypes, Model, Optional } from "sequelize";
+import { sequelize } from "../config/database";
 
 interface UserAttributes {
   id: string;
@@ -7,9 +7,12 @@ interface UserAttributes {
   password: string;
 }
 
-interface UserCreationAttributes extends Optional<UserAttributes, 'id'> {}
+interface UserCreationAttributes extends Optional<UserAttributes, "id"> {}
 
-class UserModel extends Model<UserAttributes, UserCreationAttributes> implements UserAttributes {
+class UserModel
+  extends Model<UserAttributes, UserCreationAttributes>
+  implements UserAttributes
+{
   public id!: string;
   public email!: string;
   public password!: string;
@@ -25,7 +28,8 @@ UserModel.init(
     email: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+
+      unique: "users_email_unique",
       validate: {
         isEmail: true,
       },
@@ -37,8 +41,8 @@ UserModel.init(
   },
   {
     sequelize,
-    modelName: 'User',
-    tableName: 'users',
+    modelName: "User",
+    tableName: "users",
     timestamps: true,
   }
 );
