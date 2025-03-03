@@ -1,0 +1,41 @@
+Weather API
+Overview
+A scalable and secure Node.js Weather API providing real-time weather data based on location and city search.
+
+Features
+Fetch weather by latitude and longitude.
+Fetch weather by city name.
+Redis caching for performance.
+Rate limiting for security.
+JWT authentication for user management.
+64-bit AES encryption for responses.
+Horizontal scaling with PM2 and Docker.
+Swagger
+
+Build and Run
+
+npm run build
+npm start
+
+For development:
+npm run dev
+
+
+API Endpoints
+
+POST	/api/auth/register	Register a user
+POST	/api/auth/login	Authenticate user
+
+GET	/api/weather/current?lat=40.7128&lon=-74.0060	Get weather by coordinates
+GET	/api/weather/city/London	Get weather by city name
+
+
+Run with Docker
+
+docker-compose up --build -d
+
+
+Swagger API Docs
+
+http://localhost:5000/api-docs
+
