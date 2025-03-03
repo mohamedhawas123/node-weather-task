@@ -6,9 +6,9 @@
     "dev": "nodemon src/server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-     "test": "jest --coverage",
+    "test": "jest --coverage",
     "test:watch": "jest --watch",
-     "heroku-postbuild": "npm install --only=dev && npm run build"
+    "heroku-postbuild": "npm install --only=dev && npm run build"
   },
   "keywords": [],
   "author": "",
@@ -32,9 +32,13 @@
     "yamljs": "^0.3.0"
   },
   "devDependencies": {
+    "@types/axios": "^0.9.36",
+    "@types/compression": "^1.7.5",
+    "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/express-validator": "^2.20.33",
     "@types/jest": "^29.5.14",
+    "@types/jsonwebtoken": "^9.0.9",
     "@types/node": "^22.13.9",
     "@types/supertest": "^6.0.2",
     "@types/swagger-ui-express": "^4.1.8",
